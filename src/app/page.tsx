@@ -1,102 +1,184 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Luggage, Scan, Shield, Zap, Globe, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-40 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Navigation */}
+      <nav className="relative z-10 p-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center space-x-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <Luggage className="h-8 w-8 text-cyan-400" />
+            <span className="text-2xl font-bold text-white">
+              BaggageTrack Pro
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            Read our docs
-          </a>
+            <Link href="/login">
+              <Button className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                Login
+              </Button>
+            </Link>
+          </motion.div>
         </div>
+      </nav>
+
+      {/* Hero Section */}
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-20">
+        <div className="text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight"
+          >
+            Track Your
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+              {" "}
+              Baggage
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+          >
+            Experience the future of baggage tracking with real-time updates, QR
+            code scanning, and intelligent monitoring across all airport
+            checkpoints.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+          >
+            <Link href="/track">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                Track Baggage 🧳
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300"
+              >
+                Login Portal 🔑
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Features Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          className="grid md:grid-cols-3 gap-8 mb-20"
+        >
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-8 rounded-2xl hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <Scan className="h-12 w-12 text-cyan-400 mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-4">
+              QR Code Scanning
+            </h3>
+            <p className="text-gray-300">
+              Instant updates with QR code scanning at every checkpoint for
+              real-time tracking.
+            </p>
+          </Card>
+
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-8 rounded-2xl hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <Shield className="h-12 w-12 text-purple-400 mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Secure Tracking
+            </h3>
+            <p className="text-gray-300">
+              Advanced security measures ensure your baggage data is protected
+              and accessible only to you.
+            </p>
+          </Card>
+
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-8 rounded-2xl hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <Zap className="h-12 w-12 text-yellow-400 mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Real-time Updates
+            </h3>
+            <p className="text-gray-300">
+              Get instant notifications and updates as your baggage moves
+              through the airport system.
+            </p>
+          </Card>
+        </motion.div>
+
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+          className="grid md:grid-cols-3 gap-8 text-center mb-20"
+        >
+          <div>
+            <div className="text-4xl md:text-6xl font-bold text-cyan-400 mb-2">
+              99.9%
+            </div>
+            <div className="text-gray-300 text-lg">Tracking Accuracy</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-6xl font-bold text-purple-400 mb-2">
+              24/7
+            </div>
+            <div className="text-gray-300 text-lg">Real-time Monitoring</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-6xl font-bold text-yellow-400 mb-2">
+              10+
+            </div>
+            <div className="text-gray-300 text-lg">Airport Locations</div>
+          </div>
+        </motion.div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-white/10 mt-20">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <Luggage className="h-6 w-6 text-cyan-400" />
+              <span className="text-white font-semibold">BaggageTrack Pro</span>
+            </div>
+            <div className="text-gray-400 text-sm">
+              © 2024 BaggageTrack Pro. All rights reserved.
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
